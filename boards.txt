@@ -1,0 +1,45 @@
+# See: https://arduino.github.io/arduino-cli/latest/platform-specification/
+
+
+menu.xserial=U(S)ART support
+menu.usb=USB support (if available)
+menu.xusb=USB speed (if available)
+menu.virtio=Virtual serial support
+
+menu.opt=Optimize
+menu.rtlib=C Runtime Library
+menu.upload_method=Upload method
+
+################################################################################
+WIO_LITE_AI.name=Wio Lite AI
+
+WIO_LITE_AI.build.core=arduino
+WIO_LITE_AI.build.board=WIO_LITE_AI
+WIO_LITE_AI.build.extra_flags=-DWIO_LITE_AI -D{build.product_line} {build.enable_usb} {build.xSerial} {build.xSerial} {build.usb_manufacturer}  {build.usb_product}
+
+WIO_LITE_AI.build.mcu=cortex-m7
+WIO_LITE_AI.build.flags.fp=-mfpu=fpv4-sp-d16 -mfloat-abi=hard
+WIO_LITE_AI.build.board=WIO_LITE_AI
+WIO_LITE_AI.build.series=STM32H7xx
+WIO_LITE_AI.build.product_line=STM32H725xx
+WIO_LITE_AI.build.variant=WIO_LITE_AI
+WIO_LITE_AI.build.cmsis_lib_gcc=arm_cortexM7lfsp_math
+WIO_LITE_AI.build.pid=0x2886
+WIO_LITE_AI.build.vid=0x8040
+WIO_LITE_AI.build.usb_manufacturer='-DUSB_MANUFACTURER_STRING="Seeed Studio"'
+WIO_LITE_AI..build.usb_product='-DUSB_PRODUCT_STRING="WIO-LITE-AI"'
+
+WIO_LITE_AI.build.ldscript=ldscript.ld
+WIO_LITE_AI.upload.maximum_size=16777216
+WIO_LITE_AI.upload.maximum_data_size=327680
+
+WIO_LITE_AI.menu.usb.CDC=CDC (no generic 'Serial')
+WIO_LITE_AI.menu.usb.CDC.build.enable_usb={build.usb_flags} -DUSBD_USE_CDC -DDISABLE_GENERIC_SERIALUSB
+
+WIO_LITE_AI.menu.xusb.HSFS=High Speed in Full Speed mode
+WIO_LITE_AI.menu.xusb.HSFS.build.usb_speed=-DUSE_USB_HS -DUSE_USB_HS_IN_FS
+
+WIO_LITE_AI.menu.upload_method.uf2Method=UF2
+WIO_LITE_AI.menu.upload_method.uf2Method.upload.protocol=0
+WIO_LITE_AI.menu.upload_method.uf2Method.upload.options=-g
+WIO_LITE_AI.menu.upload_method.uf2Method.upload.tool=uf2
